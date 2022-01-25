@@ -306,38 +306,6 @@ function kohnen_scripts() {
 }
 add_action('wp_enqueue_scripts', 'kohnen_scripts');
 
-// add async and defer attributes to enqueued scripts
-function kohnen_script_loader_tag($tag, $handle, $src) {
-	
-	$scripts_to_defer_Arr = array(
-		'kohnen-isinviewport',
-		'kohnen-muuri',
-		'kohnen-web-animations',
-		'kohnen-global-header',
-		'kohnen-global-footer',
-	);
-
-	if ( in_array( $handle, $scripts_to_defer_Arr ) ) {
-		
-		if (false === stripos($tag, 'async')) {
-			
-			$tag = str_replace(' src', ' async="async" src', $tag);
-			
-		}
-		
-		if (false === stripos($tag, 'defer')) {
-			
-			$tag = str_replace('<script ', '<script defer ', $tag);
-			
-		}
-		
-	}
-	
-	return $tag;
-	
-}
-//add_filter('script_loader_tag', 'kohnen_script_loader_tag', 10, 3);
-
 function kohnen_google_maps_api_key_to_header() {
 
 	if ( is_contact_page() ) :

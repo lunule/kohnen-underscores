@@ -262,7 +262,7 @@ if ( $fcs ) :
 
 			<div class="text-center mb-lg">
 
-				<h2 class="secondary-header styled-secondary-header">Featured Case Studies</h2>
+				<h2 class="secondary-header styled-secondary-header"><?php echo $fcs_title; ?></h2>
 
 			</div>
 
@@ -370,7 +370,7 @@ if ( $fcs ) :
 			<div class="mt-lg text-center">
 
 				<a href="<?php echo site_url(); ?>/case-studies">
-					<button class="btn btn-transparent-primary btn-xxl">More Case Studies</button>
+					<button class="btn btn-transparent-primary btn-xxl"><?php echo $fcs_btn_txt; ?></button>
 				</a>
 
 			</div>

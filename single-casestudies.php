@@ -111,30 +111,42 @@ get_header();
 								</div>
 							
 							</section>
-							
-							<section class="case-study__styled-content">
-							
-								<div>
-							
-									<h3 class="mb-sm">The Challenge</h3>
-							
-									<?php echo $cs_challenge; ?>
-							
-								</div>
-							
-								<div>
-							
-									<h3 class="mb-sm">The Solution</h3>
-							
-									<?php echo $cs_solution; ?>
-							
-								</div>
-							
-							</section>
+	
+							<?php 
+							if ( $cs_challenge && $cs_solution ) : ?>
+
+								<section class="case-study__styled-content">
+								
+									<div>
+								
+										<h3 class="mb-sm">The Challenge</h3>
+								
+										<?php echo $cs_challenge; ?>
+								
+									</div>
+								
+									<div>
+								
+										<h3 class="mb-sm">The Solution</h3>
+								
+										<?php echo $cs_solution; ?>
+								
+									</div>
+								
+								</section>
+
+							<?php
+							endif; ?>
 							
 							<section class="padding mt-md">
 
-								<h2 class="secondary-header__styled-secondary-header styled-secondary-header">More Case Studies</h2>
+								<?php
+								$block_title = get_field('recent_case_studies_block_title', 'option')
+										? get_field('recent_case_studies_block_title', 'option')
+										: 'More Case Studies';
+								?>
+
+								<h2 class="secondary-header__styled-secondary-header styled-secondary-header"><?php echo $block_title; ?></h2>								
 
 								<div class="gx-5 gy-5 mt-xs row">
 									

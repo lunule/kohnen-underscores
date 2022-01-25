@@ -75,7 +75,7 @@ $tm_Arr = get_posts( $tm_q_Arr );
 
 		</div>
 
-		<p class="about__styled-main-text">is a full-service commercial real estate brokerage company specializing in the diverse and dynamic Southern California region.</p>
+		<p class="about__styled-main-text"><?php echo $intro_txt; ?></p>
 
 	</div>
 

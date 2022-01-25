@@ -79,7 +79,13 @@ get_header();
 
 											<div class="mb-lg">
 
-												<h2 class="styled-secondary-header">Recent Posts</h2>
+												<?php
+												$block_title = get_field('recent_posts_block_title', 'option')
+														? get_field('recent_posts_block_title', 'option')
+														: 'Recent Posts';
+												?>
+
+												<h2 class="styled-secondary-header"><?php echo $block_title; ?></h2>
 
 											</div>
 

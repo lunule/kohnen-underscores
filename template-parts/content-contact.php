@@ -15,6 +15,20 @@ $c_title 			= get_field('contact_title');
 $c_loc 				= get_field('location');
 $c_form_to 			= get_field('form_to');
 $c_form 			= get_field('contact_form');
+
+$address_btitle 	= get_field('address_block_title', 'option')
+						? get_field('address_block_title', 'option')
+						: 'Address';
+$phone_btitle 		= get_field('phone_block_title', 'option')
+						? get_field('phone_block_title', 'option')
+						: 'Phone';
+$email_btitle 		= get_field('email_block_title', 'option')
+						? get_field('email_block_title', 'option')
+						: 'Email';
+
+$address 			= get_field('address', 'option');
+$phone 				= get_field('phone', 'option');
+$email 				= get_field('email', 'option');
 ?>
 
 <section class="padding mb-md">
@@ -22,8 +36,8 @@ $c_form 			= get_field('contact_form');
 	<div class="container-lg">
 	
 		<div class="page-titles__styled-titles styled-titles">
-			<h3 data-sal="fade" data-sal-duration="300">Contact</h3>
-			<h1 data-sal="fade" data-sal-duration="300" data-sal-delay="300">Get in Touch</h1>
+			<h3 data-sal="fade" data-sal-duration="300"><?php echo $c_pre_title; ?></h3>
+			<h1 data-sal="fade" data-sal-duration="300" data-sal-delay="300"><?php echo $c_title; ?></h1>
 		</div>
 	
 		<div class="gx-5 gy-5 mt-md row">
@@ -34,8 +48,8 @@ $c_form 			= get_field('contact_form');
 	
 					<div class="mb-md">
 	
-						<h5>ADDRESS</h5>
-						<p>Torrey Reserve North Court <br>11622El Camino Real, Suite 100 <br>San Diego, CA 92130 </p>
+						<h5><?php echo $address_btitle; ?></h5>
+						<p><?php echo $address; ?></p>
 	
 					</div>
 	
@@ -60,13 +74,13 @@ $c_form 			= get_field('contact_form');
 					</div>
 					
 					<div class="mb-sm mt-md">
-						<h5>PHONE</h5>
-						<a href="tel:+1 (858) 206-8333">+1 (858) 206-8333</a>
+						<h5><?php echo $phone_btitle; ?></h5>
+						<a href="tel:<?php echo $phone ?>"><?php echo $phone ?></a>
 					</div>
 					
 					<div>
-						<h5>EMAIL</h5>
-						<a href="mailto:info@kohnengroup.com">info@kohnengroup.com</a>
+						<h5><?php echo $email_btitle; ?></h5>
+						<a href="mailto:<?php echo $email ?>"><?php echo $email ?></a>
 					</div>
 				
 				</div>

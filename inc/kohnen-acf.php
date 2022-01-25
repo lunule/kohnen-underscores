@@ -47,16 +47,19 @@ function register_acf_options_pages() {
 	));
 
 	$options_child_social = acf_add_options_page(array(
-		'page_title' 	=> 'Social',
-		'menu_title'	=> 'Social Settings',
-		'parent_slug'	=> 'options-page',
-	));
-
-	$options_child_social = acf_add_options_page(array(
 		'page_title' 	=> 'Sidebar',
 		'menu_title'	=> 'Sidebar Settings',
 		'parent_slug'	=> 'options-page',
+		// Disable this to re-enable sidebar functionality
+		'capability' 	=> 'temp_hide_acf_sub_page',
 	));	
 
 }
 add_action('acf/init', 'register_acf_options_pages');
+
+// Disable this to re-enable sidebar functionality
+add_action( 'admin_head', function () { 
+
+      echo '<style type="text/css">#acf-group_61e42eb1ad2ba, tr#post-920, tr#post-922 {display: none!important;}</style>';
+
+});

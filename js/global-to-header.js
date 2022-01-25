@@ -62,6 +62,8 @@ jQuery.fn.animateAuto = function(prop, speed, easing, callback){
     });  
 }
 
+let grid = document.querySelector('muuri-grid');
+
 jQuery(document).ready(function($){
 
 	/**
@@ -217,7 +219,7 @@ jQuery(document).ready(function($){
 	 if ( $('body.kohnen-page--resources').length > 0 ) {
 
 		// Initiate Muuri
-		const grid = new Muuri('.muuri-grid', {
+		grid = new Muuri('.muuri-grid', {
 			// Disable animation
 			layoutDuration: 0,
 			showDuration: 0,
@@ -254,83 +256,6 @@ jQuery(document).ready(function($){
 
 		}, 300);
 
-		// Images loaded transition
-		window.addEventListener('load', () => {
-
-			grid.refreshItems().layout();
-			
-			// We don't need this here, we add the class above, on document ready
-			//document.getElementById('muuri-grid').classList.add('loaded-images');
-
-			// Link Listener to Filter by Category
-			const links = document.querySelectorAll('#categories button');
-
-			links.forEach( (element) => {
-
-				// Identify the clicked category
-				const category = $('#categories').find('.active').attr('data-slug');
-
-				category === 'all' 
-					? grid.filter('[data-category]') 
-					: grid.filter(`[data-category="${category}"]`);
-
-				element.addEventListener('click', (e) => {
-				
-					e.preventDefault();
-
-					links.forEach( (link) => link.classList.remove('active') );
-					event.target.classList.add('active');
-
-					// Identify the clicked category
-					const category = e.target.innerHTML.toLowerCase();
-
-					category === 'all' 
-						? grid.filter('[data-category]') 
-						: grid.filter(`[data-category="${category}"]`);
-				});
-			} );
-
-			// Search bar listener - not used here, but might come in handy later
-			/*document.querySelector('#search-bar').addEventListener('input', (e) => {
-
-				const search = e.target.value;
-				grid.filter( (item) => item.getElement().dataset.tags.includes(search) );
-			
-			});*/
-
-			/**
-			 * Image listener, very basic but very SYMPA, minimalistic lightbox
-			 * functionality - not used here, but might come in handy later
-			 */
-			/*const overlay = document.getElementById('overlay');
-
-			document.querySelectorAll('.muuri-grid .item img').forEach((element) => {
-				
-				element.addEventListener('click', () => {
-
-					const route = element.getAttribute('src');
-					const description = element.parentNode.parentNode.dataset.description;
-					overlay.classList.add('active');
-					document.querySelector('#overlay img').src = route;
-					document.querySelector('#overlay .description').innerHTML = description;
-
-				});
-
-			});
-
-			// Close Button EventListener
-			document.querySelector('#btn-close-popup').addEventListener('click',  () => {
-				overlay.classList.remove('active');
-			});
-
-			// Overlay EventListener
-			overlay.addEventListener('click', (e) => {
-				e
-				e.target.id === 'overlay' ? overlay.classList.remove('active') : '';
-			});*/
-
-		});
-
 	}
 
 	/**
@@ -344,6 +269,89 @@ jQuery(document).ready(function($){
   	
   	});  	
   
+})
+
+/**
+ * $(window).on('load', function() {}) DOESN'T WORK IN INCOGNITO!!!
+ *
+ * Everything that should be processed upon the onload event MUST be handled here!!!
+ */
+jQuery(window).ready(function($) {
+
+	console.log('load');
+
+	grid.refreshItems().layout();
+	
+	// We don't need this here, we add the class above, on document ready
+	//document.getElementById('muuri-grid').classList.add('loaded-images');
+
+	// Link Listener to Filter by Category
+	const links = document.querySelectorAll('#categories button');
+
+	links.forEach( (element) => {
+
+		// Identify the clicked category
+		const category = $('#categories').find('.active').attr('data-slug');
+
+		category === 'all' 
+			? grid.filter('[data-category]') 
+			: grid.filter(`[data-category="${category}"]`);
+
+		element.addEventListener('click', (e) => {
+		
+			e.preventDefault();
+
+			links.forEach( (link) => link.classList.remove('active') );
+			event.target.classList.add('active');
+
+			// Identify the clicked category
+			const category = e.target.innerHTML.toLowerCase();
+
+			category === 'all' 
+				? grid.filter('[data-category]') 
+				: grid.filter(`[data-category="${category}"]`);
+		});
+	} );
+
+	// Search bar listener - not used here, but might come in handy later
+	/*document.querySelector('#search-bar').addEventListener('input', (e) => {
+
+		const search = e.target.value;
+		grid.filter( (item) => item.getElement().dataset.tags.includes(search) );
+	
+	});*/
+
+	/**
+	 * Image listener, very basic but very SYMPA, minimalistic lightbox
+	 * functionality - not used here, but might come in handy later
+	 */
+	/*const overlay = document.getElementById('overlay');
+
+	document.querySelectorAll('.muuri-grid .item img').forEach((element) => {
+		
+		element.addEventListener('click', () => {
+
+			const route = element.getAttribute('src');
+			const description = element.parentNode.parentNode.dataset.description;
+			overlay.classList.add('active');
+			document.querySelector('#overlay img').src = route;
+			document.querySelector('#overlay .description').innerHTML = description;
+
+		});
+
+	});
+
+	// Close Button EventListener
+	document.querySelector('#btn-close-popup').addEventListener('click',  () => {
+		overlay.classList.remove('active');
+	});
+
+	// Overlay EventListener
+	overlay.addEventListener('click', (e) => {
+		e
+		e.target.id === 'overlay' ? overlay.classList.remove('active') : '';
+	});*/	
+
 })
 
 window.onload = function() {
